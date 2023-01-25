@@ -1,1 +1,1 @@
-export * from "./use-onboarding-query";
+export * from "./use-theme-query";
