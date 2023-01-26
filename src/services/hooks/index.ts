@@ -1,1 +1,1 @@
-export * from "./use-theme-query";
+export * from "./use-steps-manager";

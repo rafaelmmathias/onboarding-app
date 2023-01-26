@@ -29,17 +29,19 @@ persistQueryClient({
   persister: localStoragePersister,
 });
 
-export const App = () => (
-  <ErrorBoundaryBase>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
-          <Route path=":clientId/*" element={<OnboardingRouter />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </BrowserRouter>
-      {!isProduction() && <ReactQueryDevtools initialIsOpen={isDev()} />}
-    </QueryClientProvider>
-    <Reset />
-  </ErrorBoundaryBase>
-);
+export const App = () => {
+  return (
+    <ErrorBoundaryBase>
+      <Reset />
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/:clientId/*" element={<OnboardingRouter />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </BrowserRouter>
+        {!isProduction() && <ReactQueryDevtools initialIsOpen={isDev()} />}
+      </QueryClientProvider>
+    </ErrorBoundaryBase>
+  );
+};
