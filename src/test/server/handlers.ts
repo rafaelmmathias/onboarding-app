@@ -12,10 +12,19 @@ const handlers = [
       const clientId = req.url.searchParams.get("clientId") as
         | "client1"
         | "client2";
-
+      if (!["client1", "client2"].includes(clientId)) {
+        return res(ctx.status(404));
+      }
       const config = getConfigByClientId(clientId);
       await delay();
       return res(ctx.json(config));
+    }
+  ),
+  rest.post<{}, { clientId: string }>(
+    `${apiEndpoint}/steps-submit`,
+    async (req, res, ctx) => {
+      await delay();
+      return res(ctx.status(200));
     }
   ),
 ];

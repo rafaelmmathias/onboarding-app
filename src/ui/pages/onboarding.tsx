@@ -8,10 +8,14 @@ export const OnboardingPage = () => {
     previousStep,
     currentStep,
     form,
+    isStepValid,
+    isSubmitting,
+    isFormValid,
+    isLastStep,
     onFormChange,
     goToNext,
     goToPrevious,
-    isStepValid,
+    submitForm,
   } = useStepsManager();
 
   const isForm = currentStep.type === "form";
@@ -19,12 +23,13 @@ export const OnboardingPage = () => {
   return (
     <div>
       <Header />
+
       <Box>onboarding-page: {currentStep.data.title}</Box>
       <div>
         {isForm && currentStep.data.field.type === "input" && (
           <input
             name={currentStep.data.field.field}
-            value={form[currentStep.data.field.field]}
+            value={form[currentStep.data.field.field] || ""}
             onChange={(e) => {
               onFormChange(currentStep.data.field.field, e.target.value);
             }}
@@ -33,6 +38,7 @@ export const OnboardingPage = () => {
 
         {isForm && currentStep.data.field.type === "select" && (
           <select
+            defaultValue={form[currentStep.data.field.field]}
             name={currentStep.data.field.field}
             onChange={(e) => {
               onFormChange(currentStep.data.field.field, e.target.value);
@@ -40,11 +46,7 @@ export const OnboardingPage = () => {
           >
             <option value={""}>choose an option...</option>
             {currentStep.data.field.options.map((field, index) => (
-              <option
-                selected={form[currentStep.data.field.field] === field.value}
-                value={field.value}
-                key={`option-${field.value}-index`}
-              >
+              <option value={field.value} key={`option-${field.value}-index`}>
                 {field.label}
               </option>
             ))}
@@ -56,6 +58,11 @@ export const OnboardingPage = () => {
       {nextStep && (
         <button disabled={!isStepValid} onClick={goToNext}>
           next
+        </button>
+      )}
+      {isLastStep && (
+        <button disabled={!isFormValid || isSubmitting} onClick={submitForm}>
+          send
         </button>
       )}
     </div>

@@ -1,15 +1,20 @@
-import { useClientConfigQuery } from "@/services/api";
-import { ThemeProvider } from "styled-components";
-import { Loader } from "@/ui/components";
-import { NotFoundPage } from "../pages";
-import FontStyle from "./font-face";
-import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import { useClientConfigQuery } from "@/services/hooks";
+import { Loader } from "@/ui/components";
+import { NotFoundPage } from "@/ui/pages";
+import FontStyle from "./font-face";
 
 type Props = { children: React.ReactNode };
 
 export const OnboardingConfigManager: React.FC<Props> = ({ children }) => {
-  const { data, isFetching, isLoading } = useClientConfigQuery();
+  const { data, isLoading, refetch } = useClientConfigQuery();
+
+  useEffect(() => {
+    refetch();
+  }, []);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,7 +23,7 @@ export const OnboardingConfigManager: React.FC<Props> = ({ children }) => {
     }
   }, [data]);
 
-  if (isFetching || isLoading) return <Loader />;
+  if (isLoading) return <Loader />;
   if (data)
     return (
       <ThemeProvider theme={data.theme}>

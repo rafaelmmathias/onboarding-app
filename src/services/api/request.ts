@@ -12,4 +12,6 @@ export const request = {
         ...params,
       })
       .then((res) => res.data),
+  post: <T>(url: string, params?: object) =>
+    axiosInstance.post<T>(url, params).then((res) => res.data),
 };
