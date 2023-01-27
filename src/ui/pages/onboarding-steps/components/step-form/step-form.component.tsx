@@ -1,17 +1,18 @@
 import { FormType } from "@/entities/steps.entities";
 import { useStepsManager } from "@/services/hooks";
+import { Input, Select } from "@/ui/components";
+import { StepFormContainer } from "./step-form.styles";
 
-type StepFormProps = {
-  stepForm: FormType;
-};
-
-export const StepForm: React.FC<StepFormProps> = ({ stepForm }) => {
-  const { form, onFormChange } = useStepsManager();
+export const StepForm: React.FC = () => {
+  const { form, onFormChange, currentStep } = useStepsManager();
+  const stepForm = currentStep.data as FormType;
 
   return (
-    <>
+    <StepFormContainer>
       {stepForm.field.type === "input" && (
-        <input
+        <Input
+          label={stepForm.field.label}
+          tip={stepForm.field.tip}
           name={stepForm.field.field}
           value={form[stepForm.field.field] || ""}
           onChange={(e) => {
@@ -20,21 +21,15 @@ export const StepForm: React.FC<StepFormProps> = ({ stepForm }) => {
         />
       )}
       {stepForm.field.type === "select" && (
-        <select
-          defaultValue={form[stepForm.field.field]}
-          name={stepForm.field.field}
-          onChange={(e) => {
-            onFormChange(stepForm.field.field, e.target.value);
+        <Select
+          label={stepForm.field.label}
+          options={stepForm.field.options}
+          selected={form[stepForm.field.field]}
+          onChange={(value) => {
+            onFormChange(stepForm.field.field, value);
           }}
-        >
-          <option value={""}>choose an option...</option>
-          {stepForm.field.options.map((field, index) => (
-            <option value={field.value} key={`option-${field.value}-index`}>
-              {field.label}
-            </option>
-          ))}
-        </select>
+        />
       )}
-    </>
+    </StepFormContainer>
   );
 };

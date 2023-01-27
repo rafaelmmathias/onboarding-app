@@ -1,12 +1,10 @@
-import { DefaultTheme } from "styled-components";
-
-export const client2Theme: DefaultTheme = {
-  fontFamily: "Arial",
+export const client2Theme = {
+  fontFamily: "Courier New",
   palette: {
-    primary: "#fff",
-    secondary: "#0072CE",
-    terciary: "#B9BCC0",
-    bgBody: "#F0F3F5",
-    fontColor: "#404040",
+    primary: "#dec87a",
+    secondary: "#f2445e",
+    terciary: "#f07951",
+    bgBody: "#471754",
+    fontColor: "#991d5d",
   },
 };

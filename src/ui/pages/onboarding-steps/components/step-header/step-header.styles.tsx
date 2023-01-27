@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StepHeaderContainer = styled.div`
   font-weight: 300;
   background-color: ${({ theme }) => theme.palette.terciary};
+  color: ${({ theme }) => theme.palette.fontColor};
   max-height: 60px;
   height: 60px;
   display: flex;

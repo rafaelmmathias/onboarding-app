@@ -1,26 +1,11 @@
 import { useStepsManager } from "@/services/hooks";
-import { Button, Header } from "@/ui/components";
-import { StepHeader } from "@/ui/components";
-import { StepForm, StepInfo } from "./components";
+import { Header } from "@/ui/components";
+import { StepForm, StepHeader, StepInfo } from "./components";
+import { StepFooter } from "./components/step-footer";
 import { StepContainer, TitleContainer } from "./onboarding.styles";
 
 export const OnboardingPage = () => {
-  const {
-    nextStep,
-    previousStep,
-    currentStep,
-    form,
-    isStepValid,
-    isSubmitting,
-    isFormValid,
-    isLastStep,
-    currentStepIndex,
-    steps,
-    onFormChange,
-    goToNext,
-    goToPrevious,
-    submitForm,
-  } = useStepsManager();
+  const { currentStep } = useStepsManager();
 
   const isFormStep = currentStep.type === "form";
   const isInfoStep = currentStep.type === "info";
@@ -28,30 +13,17 @@ export const OnboardingPage = () => {
   return (
     <div>
       <Header />
-      <StepHeader
-        currentStepIndex={currentStepIndex}
-        stepsLength={steps.length}
-      />
+      <StepHeader />
       <StepContainer>
         <TitleContainer>
           <span className="title">{currentStep.data.title}</span>
           <span className="description">{currentStep.data.description}</span>
         </TitleContainer>
 
-        {isInfoStep && <StepInfo stepInfo={currentStep.data} />}
-        {isFormStep && <StepForm stepForm={currentStep.data} />}
+        {isInfoStep && <StepInfo />}
+        {isFormStep && <StepForm />}
 
-        {previousStep && <Button onClick={goToPrevious}>back</Button>}
-        {!isInfoStep && nextStep && (
-          <Button disabled={!isStepValid} onClick={goToNext}>
-            next
-          </Button>
-        )}
-        {isLastStep && (
-          <Button disabled={!isFormValid || isSubmitting} onClick={submitForm}>
-            send
-          </Button>
-        )}
+        <StepFooter />
       </StepContainer>
     </div>
   );

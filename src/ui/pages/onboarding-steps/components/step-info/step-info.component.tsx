@@ -1,18 +1,16 @@
 import { InfoType } from "@/entities/steps.entities";
 import { useStepsManager } from "@/services/hooks";
-import { Button } from "@/ui/components";
-import { Icon } from "@/ui/components/Icon";
+import { Button, Icon } from "@/ui/components";
 import {
   StepInfoContainer,
   StepInfoIconContainer,
   StepInfoIconsContainer,
 } from "./step-info.styles";
 
-type StepInfoProps = {
-  stepInfo: InfoType;
-};
-export const StepInfo: React.FC<StepInfoProps> = ({ stepInfo }) => {
-  const { goToNext } = useStepsManager();
+export const StepInfo: React.FC = () => {
+  const { goToNext, currentStep } = useStepsManager();
+  const stepInfo = currentStep.data as InfoType;
+
   return (
     <StepInfoContainer>
       <StepInfoIconsContainer>

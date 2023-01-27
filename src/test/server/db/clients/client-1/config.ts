@@ -1,6 +1,4 @@
-import { Steps } from "@/entities/steps.entities";
-
-export const config1: Steps = [
+export const config1 = [
   {
     route: "onboarding",
     type: "info",
@@ -29,7 +27,7 @@ export const config1: Steps = [
     route: "zip-code",
     type: "form",
     data: {
-      title: "General Information -1",
+      title: "General Information",
       description:
         "We use this information to calculate fuel costs and applicable incentives",
       field: {
@@ -64,6 +62,22 @@ export const config1: Steps = [
           {
             label: "Large Office",
             value: "large_office",
+          },
+          {
+            label: "Warehouse",
+            value: "warehouse",
+          },
+          {
+            label: "Depot",
+            value: "depot",
+          },
+          {
+            label: "School",
+            value: "school",
+          },
+          {
+            label: "Apartment Building",
+            value: "apartment_building",
           },
         ],
       },
