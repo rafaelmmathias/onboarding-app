@@ -3,7 +3,7 @@ type DataInfoElement = {
   text: string;
 };
 
-type InfoType = {
+export type InfoType = {
   title: string;
   description: string;
   buttonText: string;
@@ -32,7 +32,7 @@ type SelectField = {
 
 type Field = InputField | SelectField;
 
-type FormType = {
+export type FormType = {
   title: string;
   description: string;
   field: Field;
@@ -44,7 +44,7 @@ type StepInfo = {
   data: InfoType;
 };
 
-type StepForm = {
+export type StepForm = {
   route: string;
   type: "form";
   data: FormType;

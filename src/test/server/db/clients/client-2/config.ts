@@ -2,10 +2,10 @@ import { Steps } from "@/entities/steps.entities";
 
 export const config2: Steps = [
   {
-    route: "onboarding-2",
+    route: "onboarding",
     type: "info",
     data: {
-      title: "Going electric starts with understanding your needs - test",
+      title: "Going electric starts with understanding your needs",
       description:
         "We need to understand your requirements so we can recommend the appropriate electric vehicle, charger and identify incentives.",
       buttonText: "Create Your First Vehicle Set",
@@ -39,7 +39,7 @@ export const config2: Steps = [
         tip: "Used to check incentive applicability and fuel prices",
         options: [
           {
-            label: "Home (Garage -2)",
+            label: "Home (Garage)",
             value: "home",
           },
           {

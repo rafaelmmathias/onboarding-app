@@ -1,2 +1,2 @@
 export * from "./not-found";
-export * from "./onboarding";
+export * from "./onboarding-steps";

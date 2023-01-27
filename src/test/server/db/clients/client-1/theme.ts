@@ -1,8 +1,10 @@
 export const client1Theme = {
-  fontFamily: "Brush Script MT",
+  fontFamily: "Arial",
   palette: {
-    primary: "#aaffcc",
-    secondary: "#80a1cb",
-    terciary: "#949494",
+    primary: "#fff",
+    secondary: "#0072CE",
+    terciary: "#B9BCC0",
+    bgBody: "#F0F3F5",
+    fontColor: "#404040",
   },
 };
