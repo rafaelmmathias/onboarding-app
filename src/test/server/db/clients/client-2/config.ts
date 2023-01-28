@@ -34,7 +34,7 @@ export const config2: Steps = [
         "We use this information to calculate fuel costs and applicable incentives",
       field: {
         type: "select",
-        field: "building_type",
+        fieldName: "building_type",
         label: "Building Type",
         tip: "Used to check incentive applicability and fuel prices",
         options: [
@@ -63,7 +63,7 @@ export const config2: Steps = [
         "We use this information to calculate fuel costs and applicable incentives",
       field: {
         type: "input",
-        field: "state",
+        fieldName: "state",
         label: "State",
         tip: "Used to check incentive applicability and fuel prices",
       },

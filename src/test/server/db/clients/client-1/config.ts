@@ -1,4 +1,5 @@
-export const config1 = [
+import { Steps } from "@/entities/steps.entities";
+export const config1: Steps = [
   {
     route: "onboarding",
     type: "info",
@@ -32,7 +33,7 @@ export const config1 = [
         "We use this information to calculate fuel costs and applicable incentives",
       field: {
         type: "input",
-        field: "zip_code",
+        fieldName: "zip_code",
         label: "Zip Code",
         tip: "Used to check incentive applicability and fuel prices",
       },
@@ -47,7 +48,7 @@ export const config1 = [
         "We use this information to calculate fuel costs and applicable incentives",
       field: {
         type: "select",
-        field: "building_type",
+        fieldName: "building_type",
         label: "Building Type",
         tip: "Used to check incentive applicability and fuel prices",
         options: [

@@ -7,11 +7,12 @@ type IconProps = {
   size: number;
 };
 
-export const Icon: React.FC<IconProps> = ({ name, size }) => {
+export const Icon: React.FC<IconProps> = ({ name, size, ...rest }) => {
   const icons = {
     wheel,
     car,
     chart,
   };
-  return <img src={icons[name]} style={{ width: `${size}vw` }} />;
+
+  return <img src={icons[name]} style={{ width: `${size}vw` }} {...rest} />;
 };

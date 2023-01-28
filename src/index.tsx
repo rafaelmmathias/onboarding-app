@@ -40,7 +40,6 @@ export const App = () => {
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>
-        {!isProduction() && <ReactQueryDevtools initialIsOpen={isDev()} />}
       </QueryClientProvider>
     </ErrorBoundaryBase>
   );

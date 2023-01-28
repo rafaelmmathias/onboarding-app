@@ -39,7 +39,7 @@ export const StepsManagerProvider: React.FC<Props> = ({ children }) => {
     const allKeys =
       data?.steps
         .filter((x) => x.type === "form")
-        .map((step) => step.type === "form" && step.data.field.field) || [];
+        .map((step) => step.type === "form" && step.data.field.fieldName) || [];
 
     return allKeys.every((key) => stepValues[key || ""]);
   }, [data, stepValues]);
@@ -86,7 +86,7 @@ export const StepsManagerProvider: React.FC<Props> = ({ children }) => {
 
   const isStepValid =
     currentStep.type === "info" ||
-    (currentStep.type === "form" && stepValues[currentStep.data.field.field]);
+    (currentStep.type === "form" && stepValues[currentStep.data.field.fieldName]);
 
   if (data)
     return (

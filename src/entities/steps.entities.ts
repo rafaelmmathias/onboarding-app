@@ -17,14 +17,14 @@ type Option = {
 
 type InputField = {
   type: "input";
-  field: string;
+  fieldName: string;
   label: string;
   tip: string;
 };
 
 type SelectField = {
   type: "select";
-  field: string;
+  fieldName: string;
   label: string;
   tip: string;
   options: Option[];

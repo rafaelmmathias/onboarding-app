@@ -5,7 +5,6 @@ const { compilerOptions } = require("./tsconfig");
 
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
-  // [...]
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
   testEnvironment: "jsdom",
   roots: ["<rootDir>"],
@@ -13,5 +12,10 @@ module.exports = {
   moduleNameMapper: pathsToModuleNameMapper(
     compilerOptions.paths /*, { prefix: '<rootDir>/' } */
   ),
+  transform: {
+    "^.+\\.tsx?$": "babel-jest",
+    "\\.svg$": "jest-transformer-svg",
+  },
   testTimeout: 15000,
+  coverageReporters: ["json-summary", "text", "lcov"],
 };

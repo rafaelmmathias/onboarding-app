@@ -14,15 +14,17 @@ export const StepInfo: React.FC = () => {
   return (
     <StepInfoContainer>
       <StepInfoIconsContainer>
-        {stepInfo.elements.map(({ icon, text }) => (
-          <StepInfoIconContainer>
-            <Icon name={icon} size={3} />
+        {stepInfo.elements.map(({ icon, text }, i) => (
+          <StepInfoIconContainer key={`icon-${i}`}>
+            <Icon name={icon} size={3} data-testid="info-icon" />
 
             <span>{text}</span>
           </StepInfoIconContainer>
         ))}
       </StepInfoIconsContainer>
-      <Button onClick={goToNext}>{stepInfo.buttonText}</Button>
+      <Button onClick={goToNext} data-testid="step-info-button">
+        {stepInfo.buttonText}
+      </Button>
     </StepInfoContainer>
   );
 };

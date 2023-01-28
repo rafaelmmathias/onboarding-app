@@ -1,4 +1,6 @@
-export const client1Theme = {
+import { DefaultTheme } from "styled-components";
+
+export const client1Theme: DefaultTheme = {
   fontFamily: "Arial",
   palette: {
     primary: "#ffffff",

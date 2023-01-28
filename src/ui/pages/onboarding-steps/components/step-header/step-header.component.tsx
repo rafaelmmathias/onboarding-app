@@ -15,8 +15,12 @@ export const StepHeader: React.FC = () => {
         Step {currentStepIndex + 1} of {steps.length}
       </span>
       <StepMarkerContainer>
-        {stepsDots.map((step) => (
-          <StepMarker active={step <= currentStepIndex} />
+        {stepsDots.map((step, i) => (
+          <StepMarker
+            key={`step-marker-${i}`}
+            active={step <= currentStepIndex}
+            data-testid="step-marker"
+          />
         ))}
       </StepMarkerContainer>
     </StepHeaderContainer>

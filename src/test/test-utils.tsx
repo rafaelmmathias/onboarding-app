@@ -1,6 +1,12 @@
 import { isTest } from "@/config";
+import { OnboardingRouter } from "@/routes";
+import { NotFoundPage } from "@/ui/pages";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { render as rtlRender } from "@testing-library/react";
+import {
+  render as rtlRender,
+  screen,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const getRandom = () => {
@@ -16,10 +22,14 @@ export const wait = async (ms = 0) =>
 
 export const delay = (delay = getRandom()) => wait(isTest() ? 0 : delay);
 
-function render(
-  ui: any,
-  { path = "/", route = "/", ...renderOptions }: any = {}
-) {
+export const waitForLoadersDone = async () => {
+  const loading = await screen.findByText("Loading...");
+  expect(loading).toBeInTheDocument();
+
+  await waitForElementToBeRemoved(() => screen.queryByText("Loading..."));
+};
+
+function render({ path = "/", route = "/", ...renderOptions }: any = {}) {
   if (route) {
     window.history.pushState({}, "", route);
   }
@@ -29,21 +39,23 @@ function render(
         queries: {
           cacheTime: 0,
           staleTime: 0,
+          retry: false,
         },
       },
     });
 
     return (
-      <BrowserRouter>
-        <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
           <Routes>
-            <Route path={path} element={children} />
+            <Route path="/:clientId/*" element={<OnboardingRouter />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
-        </QueryClientProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </QueryClientProvider>
     );
   }
-  return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
+  return rtlRender(<></>, { wrapper: Wrapper, ...renderOptions });
 }
 
 export * from "@testing-library/react";

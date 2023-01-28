@@ -11,12 +11,13 @@ export const StepForm: React.FC = () => {
     <StepFormContainer>
       {stepForm.field.type === "input" && (
         <Input
+          data-testid="input-field"
           label={stepForm.field.label}
           tip={stepForm.field.tip}
-          name={stepForm.field.field}
-          value={form[stepForm.field.field] || ""}
+          name={stepForm.field.fieldName}
+          value={form[stepForm.field.fieldName] || ""}
           onChange={(e) => {
-            onFormChange(stepForm.field.field, e.target.value);
+            onFormChange(stepForm.field.fieldName, e.target.value);
           }}
         />
       )}
@@ -24,9 +25,9 @@ export const StepForm: React.FC = () => {
         <Select
           label={stepForm.field.label}
           options={stepForm.field.options}
-          selected={form[stepForm.field.field]}
+          selected={form[stepForm.field.fieldName]}
           onChange={(value) => {
-            onFormChange(stepForm.field.field, value);
+            onFormChange(stepForm.field.fieldName, value);
           }}
         />
       )}

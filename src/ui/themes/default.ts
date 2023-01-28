@@ -1,10 +1,12 @@
 import { DefaultTheme } from "styled-components";
 
 export const defaultTheme: DefaultTheme = {
-  fontFamily: "",
+  fontFamily: "Arial",
   palette: {
-    primary: "#fff",
-    secondary: "#B9BCC0",
-    terciary: "#F0F3F5",
+    primary: "#ffffff",
+    secondary: "#0072CE",
+    terciary: "#B9BCC0",
+    bgBody: "#F0F3F5",
+    fontColor: "#404040",
   },
 };

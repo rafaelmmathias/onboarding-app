@@ -1,4 +1,6 @@
-export const client2Theme = {
+import { DefaultTheme } from "styled-components";
+
+export const client2Theme: DefaultTheme = {
   fontFamily: "Courier New",
   palette: {
     primary: "#dec87a",
